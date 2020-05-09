@@ -108,3 +108,64 @@ Difference between Human and Training performance -
 
 Difference between  Training and Dev performance -
 **Variance** can be reduced by **More Data, Regularization - dropout, data augmentation, NN architecture, Hyperparameter  search**.
+
+# Error Analysis
+Should we try to make cat classifier do better on dogs
+* Get ~ 100 mislabeled dev set example.
+* Count how many are dogs
+If 5% are dogs then it might not be good use of our time.
+If 50% are dogs then it would worth of time, as it will improve performance by 50%
+
+TO carry out error analysis, find a set of mislabeled in dev set and looked for false positive and false negative.
+
+ML are quite robust for random error.
+Systematic error are a problem.
+
+**Building our first system quickly and then iterate**
+* Set up dev/test set and metric.
+* Build initial system quickly.
+* Use bias / variance to decide next step.
+
+# Mismatch training and dev sets
+Let say we have 10000 cat pics from user. We have 200k from web.
+* Option 1 - We use all and shuffle them in dev/train/test.
+* Option 2 - We have 200k in train and 5000 from user in training set.
+  2500/2500 in dev /test case.
+
+In option 1, we are not targeting on end result, while in option 2 we are focusing on end result by having user data in dev and test.
+
+# Bias and Variance with mismatch data distribution
+| Human Level Error         |                         |
+|---------------------------|-------------------------|
+| Training level Error      | Avoidable Bias          |
+| Training Dev Level Error  | Variance                |
+| Dev level Error           | Data mismatch           |
+| Test Level Error          | Degree of Over fitting  |
+
+* Carry out manual error analysis to try to understand b/w traing and dev/test set.
+* Make Training data similar tp dev/test set.
+
+# Artificial Data Synthesis
+If we don't have enough data for end product, we can also generate data artificially.
+Let say end user environment is full of noise then we can add noise in data to synthesize data for training.
+However, we have to be cautious that we don't have enough noise, then we might be overfitting.
+
+# Transfer Learning
+If task A and B have same input and low level feature then we can use learning from A for B.
+It should be used only if we don't have enough data for B.
+Basically all internal layer are same, just outer layer will be changed.
+
+# Multi Task Learning
+Let say image have many labels. Making different NN for each label will be waste of resources as all low level features are same.
+In this case we can train big Neural Network to do well on all Task
+e.g. **Computer Vision**
+
+# End to End Learning
+
+Audio transcript
+Audio -- MFCC --> Features -- ML --> Phonemes ---> Words --> transcript
+
+Instead EOE will do Audio ---> transcript in one go.
+
+**Pro** Let data speak, Less hand designing of component.
+**Cons** Need vary large data set  required.
